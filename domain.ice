@@ -27,213 +27,225 @@
 module model {
 
     /**
-    *Foto
-    */
-    class Foto{
-        /**
-        *Nombre/URL: nombre del archivo de imagen o link hacia la foto. ej:nacimientoFirulay.png
-        */
-        string urlNomb;
-    }
-    /**
-    *Examen
-    */
-    class Examen{
+     * The Persona.
+     */
+    ["cs:property"]
+    class Persona {
 
         /**
-        *PK
-        */
-        int id;
+         * Primary Key.
+         */
+        int uid;
 
         /**
-        *Nombre: nombre del examen. Ej: Radiología
-        */
-        string nombreExam;
+         * Rut: 815184009.
+         */
+        string rut;
 
         /**
-        *Fecha: fecha en la que fue tomado el examen. ej: 15/06/2015
-        *Format: ISO_ZONED_DATE_TIME
-        */
-        string fechaExam;
-    }
-    /**
-    *Dueño
-    */
-    class Persona{
-
-        /**
-        *PK
-        */
-        int id;
-
-        /**
-        *Nombre: nombre del dueño. ej: Juan
-        */
+         * Nombre.
+         */
         string nombre;
 
         /**
-        *Dirección: dirección del dueño. ej: Angamos 0610
-        */
+         * Apellido.
+         */
+        string apellido;
+
+        /**
+         * Direccion.
+         */
         string direccion;
 
         /**
-        *Teléfono fijo: número de teléfono fijo. ej: 055 456765
-        */
-        long fonoFijo;
+         * Telefono fijo: +56 55 2355000
+         */
+        long telefonoFijo;
 
         /**
-        *Teléfono móvil: número de teléfono móvil. ej: 7567328
-        */
-        long fonoMovil;
+         * Telefono movil: +569 8123 1234
+         */
+        long telefonoMovil;
 
         /**
-        *Email: dirección de correo electrónico de contacto. ej: contacto@dominio.com
-        */
+         * Correo electronico.
+         */
         string email;
 
-        /**
-        *RUT: rut del dueño. ej: 12.442.675-1
-        */
-        string rut;
-
     }
+
     /**
-    *Control
-    */
-    class Control{
-        /**
-        *id key
-        */
-        int id;
-
-        /**
-        *Fecha: fecha del control.
-        *Format: ISO_ZONED_DATE_TIME
-        */
-        string fechaControl;
-
-        /**
-        *Fecha próximo control: fecha del próximo control
-        *Format: ISO_ZONED_DATE_TIME
-        */
-        string fechaProx;
-
-        /**
-        *Temperatura: del paciente en grados celsius
-        */
-        double temperatura;
-
-        /**
-        *Peso: del paciente expresado en kilos
-        */
-        double peso;
-
-        /**
-        *Altura: del paciente expresado en cm
-        */
-        double altura;
-
-        /**
-        *Diagnóstico: Descripción textual del control realizado.
-        */
-        string diagnostico;
-
-        /**
-        *Veterinario: Nombre del veterinario que realizó el control.
-        */
-        string veterinario;
+     * The Sexo.
+     */
+    enum Sexo {
+        MACHO,
+        HEMBRA
     }
+
     /**
-    *Ficha
-    */
-    class Ficha{
+     * The Tipo of Paciente.
+     */
+    enum TipoPaciente {
+        INTERNO,
+        EXTERNO
+    }
+
+    /**
+     * The Ficha.
+     */
+    ["cs:property"]
+    class Ficha {
 
         /**
-        *PK
-        */
-        int id;
+         * Primary Key.
+         */
+        int uid;
 
         /**
-        *Número de ficha: correlativo numérico único asignado automáticamente. ej:20128
-        */
-        int nFicha;
+         * Numero: 1554.
+         */
+        int numero;
 
         /**
-        *Nombre: nombre del paciente, ej: Firulay
-        */
+         * Nombre: Firulay.
+         */
         string nombre;
 
         /**
-        *Especie: especie del animal, ej: canino
-        */
+         * Especie: Canino.
+         */
         string especie;
 
         /**
-        *Fecha de Nacimiento: fecha de nacimiento del animal, puede ser estimada,ej: enero 2014.
-        */
+         * Fecha de Nacimiento.
+         * Format: ISO_ZONED_DATE_TIME
+         */
         string fechaNacimiento;
 
         /**
-        *Raza: del animal, ej: rottweiler
-        */
+         * Raza: Rottweiler.
+         */
         string raza;
 
         /**
-        *Color: rojo cobrizo
-        */
+         * Color: rojo cobrizo.
+         */
         string color;
 
         /**
-        *Sexo: macho, hembra
-        */
-        string sexo;
+         * Sexo: macho / hembra.
+         */
+        Sexo sexo;
 
         /**
-        *Tipo: de paciente, ej: interno o externo.
-        */
-        string tipo;
+         * TipoPaciente: interno/externo.
+         */
+        TipoPaciente tipoPaciente;
 
     }
-    /**
-    *Sexo
-    */
-    enum Sexo {HEMBRA, MACHO}
-    /**
-    *Tipo de paciente
-    */
-    enum Tipo{INTERNO, EXTERNO}
 
     /**
-    * Contratos.
-    */
-    interface Contratos{
+     * The Control.
+     */
+    ["cs:property"] 
+    class Control {
+
         /**
-        *Retorna una ficha segun el numero entregado como parametro
-        *@param numero de ficha
-        *@return Ficha
-        */
-        Ficha obtenerFicha(int nFicha);
+         * PK.
+         */
+        int uid;
+
         /**
-        *Agrega un control a la lista control
-        *@param control
-        */
-        Control ingresarControl(Control control);
+         * Fecha.
+         * Format: ISO_ZONED_DATE_TIME
+         */
+        string fecha;
+
         /**
-        *Agrega un dueño como persona
-        *@param persona
-        */
-        Persona ingresarDueno(Persona persona);
+         * Fecha proximo control.
+         * Format: ISO_ZONED_DATE_TIME
+         */
+        string fechaProximoControl;
+
+        /**
+         * Temperatura.
+         */
+        float temperatura;
+
+        /**
+         * Peso.
+         */
+        float peso;
+
+        /**
+         * Altura.
+         */
+        float altura;
+
+        /**
+         * Diagnostico.
+         */
+        string diagnostico;
+
     }
+
+    /**
+     * The Contratos.
+     */
+    interface Contratos {
+
+        /**
+         * Deseo registrar los datos de un paciente.
+         *
+         * @param ficha a crear en el backend.
+         * @return the ficha almacenada en el backend (con numero asignado).
+         */
+        Ficha crearFicha(Ficha ficha);
+
+        /**
+         * Deseo registrar los datos del duenio de un paciente.
+         *
+         * @param persona a crear en el backend.
+         * @return the Persona almacenada en el backend.
+         */
+        Persona crearPersona(Persona persona);
+
+        /**
+         * Deseo registrar los datos de un Control.
+         *
+         * @param numeroFicha al cual sera asignado el control.
+         * @param control a agregar.
+         */
+        Control crearControl(int numeroFicha, Control control);
+
+        /**
+         * Dado un numero de ficha, retorna la ficha asociada.
+         *
+         * @param numero de la ficha a obtener.
+         * @return the Ficha.
+         */
+        Ficha obtenerFicha(int numero);
+
+        /**
+         * Dado un numero de rut obtiene la persona.
+         *
+         * @param rut de la persona a buscar.
+         * @return the Persona.
+         */
+        Persona obtenerPersona(string rut);
+
+    }
+
     /**
      * The base system.
      */
-     interface TheSystem {
+    interface TheSystem {
 
         /**
          * @return the diference in time between client and server.
          */
         long getDelay(long clientTime);
 
-     }
+    }
 
 }
